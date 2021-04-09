@@ -1,0 +1,18 @@
+﻿@page
+@model RazorPageHotel.Pages.Hotels.CreateHotelModel
+@{
+}
+
+
+<h2>Create Hotel</h2>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.newHotel.Navn"></label>
+        <input asp-for="@Model.newHotel.Navn" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.newHotel.Adresse"></label>
+        <input asp-for="@Model.newHotel.Adresse" />
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary" />
+</form>

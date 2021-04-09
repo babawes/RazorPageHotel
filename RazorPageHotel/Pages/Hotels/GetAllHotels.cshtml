@@ -1,0 +1,78 @@
+﻿@page
+@model RazorPageHotel.Pages.Hotels.GetAllHotelsModel
+@{
+}
+
+@{
+    ViewData["Title"] = "GetAllHotels";
+}
+
+
+<p>
+    <a asp-page="/Hotels/CreateHotel">Create New Hotel</a>
+</p>
+
+
+<form>
+    <p>
+        Search: <input type="text" asp-for="FilterCriteria" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<h4 style="color:aquamarine"> List of hotels</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Hotel No
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Hotels.Count() != 0)
+        {
+            @foreach (var item in Model.Hotels)
+            {
+                <tr>
+                    <td>
+                        @item.HotelNr
+                    </td>
+                    <td>
+                        @item.Navn
+                    </td>
+                    <td>
+                        @item.Adresse
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Rooms/GetAllRooms" asp-route-id="@item.HotelNr" asp-route-hotel="@item.Navn">Rooms in hotel</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Rooms/Create" asp-route-id="@item.HotelNr">Create new room</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Hotels/Delete" asp-route-id="@item.HotelNr">Delete</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Hotels/UpdateHotel" asp-route-id="@item.HotelNr">Update</a>
+                        </p>
+                    </td>
+                </tr>
+            }
+        }
+</table>

@@ -1,0 +1,65 @@
+﻿@page
+@model RazorPageHotel.Pages.Rooms.GetAllRoomsModel
+@{
+}
+
+
+
+<h2>Rooms in @Model.currentHotelName</h2>
+<form method="get">
+    <p>
+        Filter: <select asp-for="FilterCriteria">
+            <option value="">All Types</option>
+            <option value="D">D</option>
+            <option value="S">S</option>
+            <option value="F">F</option>
+        </select>
+        <input type="hidden" name="id" value="@Model.currentHotelNumber" />
+        <input type="hidden" name="hotel" value="@Model.currentHotelName" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<h4 style="color:aquamarine"> List of Rooms</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Room Number
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Price
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Rooms)
+        {
+            <tr>
+                <td>
+                    @item.RoomNr
+                </td>
+                <td>
+                    @item.Types
+                </td>
+                <td>
+                    @item.Pris
+                </td>
+                <td>
+                    <p>
+                        <a asp-page="/Rooms/Delete" asp-route-hid="@item.HotelNr" asp-route-rid="@item.RoomNr">Delete</a>
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <a asp-page="/Rooms/UpdateRoom" asp-route-hid="@item.HotelNr" asp-route-rid="@item.RoomNr">Update</a>
+                    </p>
+                </td>
+            </tr>
+        }
+</table>
